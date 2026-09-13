@@ -152,13 +152,14 @@ $binKB = [math]::Round($binInfo.Length / 1024, 1)
 Write-Host ("    firmware.bin = {0:N0} ไบต์ ({1} KB)  build เมื่อ {2}" -f $binInfo.Length, $binKB, (Get-Item $BinSrc).LastWriteTime)
 
 # ---------- 7. เขียน firmware.json (UTF-8 ไม่มี BOM — BOM จะทำให้ตัวแยก JSON บนบอร์ดพัง) ----------
+# ห้ามมีช่องว่างหลังโคลอน: jsonStr() บนบอร์ดค้นหา "url":" แบบติดกัน (เฟิร์มแวร์ v1.2.0)
 Step 'เขียน firmware.json'
 $notesFull = "v$FwVersionStr - $Notes"
 $notesJson = $notesFull.Replace('\', '\\').Replace('"', '\"')
 $json = "{`n" +
-        "  `"version`": $FwVersion,`n" +
-        "  `"url`": `"$RawBinUrl`",`n" +
-        "  `"notes`": `"$notesJson`"`n" +
+        "  `"version`":$FwVersion,`n" +
+        "  `"url`":`"$RawBinUrl`",`n" +
+        "  `"notes`":`"$notesJson`"`n" +
         "}`n"
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($ManifestPath, $json, $utf8NoBom)
