@@ -1,5 +1,5 @@
 {
-"version":1,
-"url":"https://raw.githubusercontent.com/<USER>/phamnest-firmware/main/firmware.bin",
-"notes":"v1 - เวอร์ชันแรกที่ติดตั้งหน้างาน 11 ก.ย. 2026"
+  "version":5,
+  "url":"https://raw.githubusercontent.com/realphudit/phamnest-firmware/main/firmware.bin",
+  "notes":"v1.4.0 - v5: สั่งการจากระยะไกลผ่าน Web App (Google Apps Script) + Dashboard"
 }
